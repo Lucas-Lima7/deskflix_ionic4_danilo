@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center>
+        <ion-card color="dark">
+          <ion-card-header>
+            <img src="/assets/shapes.svg"/>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-card-title text-center padding-bottom="10">DeskFlix</ion-card-title>
+            <form (submit)="login()">
+              <ion-item>
+                <ion-input type="text" name="email" placeholder="E-mail" [(ngModel)]="user.email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="password" name="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
+              </ion-item>
+              <ion-button type="submit" expand="block" color="light">Login</ion-button>
+              <ion-button type="button" expand="block" color="primary" (click)="irParaHome()">Home</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
