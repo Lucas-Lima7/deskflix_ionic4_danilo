@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     login() {
         this.auth.login(this.user)
             .subscribe(() => {
-                this.afterLogin();
+                this.afterLogin(this.user);
             }, (error) => {
 
                 const toast = this.toastCtrl.create({
@@ -41,9 +41,9 @@ export class LoginPage implements OnInit {
             });
     }
 
-    afterLogin() {
+    afterLogin(user) {
         this.menuCtrl.enable(true);
-        this.navCtrl.navigateForward('/my-settings');
+        this.navCtrl.navigateForward(user.subscription_valid ? '/my-settings' : '/home');
     }
 
     irParaHome(){

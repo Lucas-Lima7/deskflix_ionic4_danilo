@@ -57,11 +57,16 @@ export class JwtClientService {
         });
     }
 
-    /*accessToken(jwtCredentials: JwtCredentials): Promise<string>{
-        return this.authHttp.post('http://localhost:8000/api/access_token',jwtCredentials)
+    /* LEMBRAR DE COLOCAR ISSO AQUI DEPOIS, CODIGO MANDADO PELO LUIZ CARLOS
+    accessToken(jwtCredentials: JwtCredentials): Promise<string>{
+        return this.http.post<{token: string}>('http://localhost:8000/api/access_token',jwtCredentials)
             .toPromise()
-            .then( (response: Response) => {
-                let token = response.json();*/
+            .then((data) =>{
+                this._token = data.token;
+                this.storage.set('token',this._token);
+                return this._token;
+            });
+*/
     accessToken(jwtCredentials: JwtCredentials): Observable<string>{
         return this.authHttp.post<any>('http://localhost:8000/api/access_token',jwtCredentials)
             .pipe(
@@ -69,9 +74,24 @@ export class JwtClientService {
                     let token = data.token;
                 this._token = token;
                 this.storage.set('token', this._token);
+                return token;
                 })
             )
-    }
+    } //COMENTEI DIA 03/09/2019
+
+    /*accessToken(jwtCredentials: JwtCredentials):Promise<string> {
+        return this.http.post('http://localhost:8000/api/access_token',jwtCredentials)
+            .toPromise()
+            .then((response: HttpResponse<{token: string}>) =>{
+                let token  = response.body.token;
+                this._token = token;
+                this.storage.set('token',this._token);
+                this.storage.get('token').then((token) => {
+                    console.log(response.body);
+                });
+                return token;
+            });
+    }*/
 
     revokeToken():Promise<null>{
         const httpOptions = {

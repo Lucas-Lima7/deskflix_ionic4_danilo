@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Planos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content padding> teste
+    <!--
+    <ion-grid>
+      <ion-row>
+        <ion-col col-sm-6 *ngFor="let plan of plans | async">
+          <ion-card text-center>
+            <ion-card-header>
+              <ion-item color="grey" text-center>
+                <ion-card-title color="light">Plano <br/> {{plan.name}}</ion-card-title>
+              </ion-item>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>{{plan.description}}</ion-item>
+              <ion-button ion-item>
+                <ion-icon name="card" item-left></ion-icon>
+                R$ {{plan.value}}
+              </ion-button>
+              <ion-button ion-item>
+                <ion-icon name="clock" item-left></ion-icon>
+                {{plan.duration == 1 ? 'Mensal' : 'Anual'}}
+              </ion-button>
+              <ion-button ion-button color="dark" block text-center navPush="PaymentPage" [navParams]="{plan: plan.id}">
+                Comprar
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    -->
+  </ion-content>

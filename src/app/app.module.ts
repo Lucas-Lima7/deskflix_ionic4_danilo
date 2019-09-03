@@ -12,15 +12,26 @@ import { AppRoutingModule } from './app-routing.module';
 import {UserResource} from './services/resource/user-resource';
 import {HttpClientModule} from '@angular/common/http';
 import {JwtClientService} from './services/jwt-client.service';
-import {JwtModule, JwtHelperService} from '@auth0/angular-jwt';
+import {JwtModule, JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
 import {AuthService} from './services/auth.service';
 import {LoginPage} from './login/login.page';
 import {HomePage} from './home/home.page';
 import {MySettingsPage} from './my-settings/my-settings.page';
 import {ListPage} from './list/list.page';
 
-export function tokenGetter() {
+/*export function tokenGetter() {
     return localStorage.getItem('access_token');
+}*/
+
+export function jwtFactory() {
+    return {
+        whitelistedDomains: [
+            new RegExp('localhost:8000/*'), //domínios válidos para enviar o token
+        ],
+        tokenGetter: () => {
+            return localStorage.getItem('access_token');//colocar código para pegar o token do local storage
+        }
+    }
 }
 
 @NgModule({
@@ -35,9 +46,13 @@ export function tokenGetter() {
           driverOrder: ['localstorage']
       }),
       JwtModule.forRoot({
-          config: {
+          /*config: {
               tokenGetter: tokenGetter,
               whitelistedDomains: ['localhost:8000'],
+          }*/
+          jwtOptionsProvider: {
+              provide: JWT_OPTIONS,
+              useFactory: jwtFactory
           }
       })
   ],
