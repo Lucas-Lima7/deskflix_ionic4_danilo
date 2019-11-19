@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserResource} from '../services/resource/user-resource';
+import {UserResource} from '../services/resource/user.resource';
 import {ToastController} from '@ionic/angular';
 
 @Component({
@@ -21,20 +21,30 @@ export class MySettingsPage implements OnInit {
   ngOnInit() {
   }
 
-    submit() {
+    async submit() {
         const toast = this.toastCtrl.create({
             duration: 3000,
             position: 'top',
-            cssClass: 'toast-reverse'
+            cssClass: 'toast-reverse',
         });
         this.userResource
             .updatePassword(this.user)
             .subscribe(() => {
-                toast.setMessage('Dados salvos com sucesso.');
-                toast.present();
+                this.toastOk();
             }, (error) => {
-                toast.setMessage('Ops, dados inválios tente novamente.');
-                toast.present();
+                this.toastError()
             });
+    }
+    async toastOk(){
+        const toast = await this.toastCtrl.create({
+            message: 'Dados salvos com sucesso.',
+        });
+        toast.present();
+    }
+    async toastError(){
+        const toast = await this.toastCtrl.create({
+            message: 'Ops, dados inválios tente novamente.',
+        });
+        toast.present();
     }
 }

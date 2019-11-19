@@ -31,13 +31,7 @@ export class LoginPage implements OnInit {
                 this.afterLogin(this.user);
             }, (error) => {
 
-                const toast = this.toastCtrl.create({
-                    message: 'Email e/ou senha inválidos.',
-                    duration: 3000,
-                    position: 'top',
-                    cssClass: 'toast-reverse'
-                });
-                toast.present();
+                this.toast();
             });
     }
 
@@ -49,5 +43,15 @@ export class LoginPage implements OnInit {
     irParaHome(){
         this.menuCtrl.enable(true);
         this.navCtrl.navigateForward('/home');
+    }
+
+    async toast(){
+        const toast = await this.toastCtrl.create({
+            message: 'Email e/ou senha inválidos.',
+            duration: 3000,
+            position: 'top',
+            cssClass: 'toast-reverse'
+        });
+        toast.present();
     }
 }

@@ -9,7 +9,8 @@ import {IonicStorageModule, Storage} from '@ionic/storage';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {UserResource} from './services/resource/user-resource';
+import {UserResource} from './services/resource/user.resource';
+import {PlanResource} from './services/resource/plan.resource';
 import {HttpClientModule} from '@angular/common/http';
 import {JwtClientService} from './services/jwt-client.service';
 import {JwtModule, JwtHelperService, JWT_OPTIONS} from '@auth0/angular-jwt';
@@ -29,7 +30,7 @@ export function jwtFactory() {
             new RegExp('localhost:8000/*'), //domínios válidos para enviar o token
         ],
         tokenGetter: () => {
-            return localStorage.getItem('access_token');//colocar código para pegar o token do local storage
+            return localStorage.getItem('access_token'); //colocar código para pegar o token do local storage
         }
     }
 }
@@ -63,6 +64,7 @@ export function jwtFactory() {
       JwtHelperService,
       AuthService,
       UserResource,
+      PlanResource,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

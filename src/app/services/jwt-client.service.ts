@@ -73,7 +73,8 @@ export class JwtClientService {
                 tap(data => {
                     let token = data.token;
                 this._token = token;
-                this.storage.set('token', this._token);
+                // this.storage.set('token', this._token);
+                    localStorage.setItem('token', this._token);
                 return token;
                 })
             )

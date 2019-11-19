@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Adicionar meu CPF</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <form (submit)="submit()">
+              <ion-item>
+                <ion-input type="text" name="cpf" placeholder="CPF" [(ngModel)]="cpf"></ion-input>
+              </ion-item>
+              <ion-button type="submit" block color="dark">Continuar</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

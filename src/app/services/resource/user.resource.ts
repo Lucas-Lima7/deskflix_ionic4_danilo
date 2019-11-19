@@ -17,7 +17,7 @@ import {tap} from 'rxjs/operators';
 })
 export class UserResource {
 
-  constructor(public http: HttpClient
+  constructor(public http: HttpClient,
   ) {
   }
 
@@ -28,13 +28,23 @@ export class UserResource {
         .post(`http://localhost:8000/register`, {}, new HttpRequest({headers})))
   }*/
 
-  updatePassword({password, password_confirmation}): Observable<Object>{
+  updatePassword({password, password_confirmation}): Observable<any>{
     return this.http.patch<any>('http://localhost:8000/api/user/settings', {password, password_confirmation})
         .pipe(
             tap(data => {
                 let token = data.user;
             })
         )
+  }
+
+  addCpf(cpf:string){
+      return this.http.patch('http://localhost:8000/api/user/cpf', {cpf})
+          .pipe(
+              tap(data => {
+                  //let token = data.user;
+                  let token = data;
+              })
+          )
   }
 
 }

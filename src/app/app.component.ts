@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {NavController, Platform} from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -9,7 +9,7 @@ import {AuthService} from './services/auth.service';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   user: any;
   public appPages = [
     {
@@ -31,6 +31,11 @@ export class AppComponent {
       title: 'Configurações',
       url: '/my-settings',
       icon: 'settings'
+    },
+      {
+      title: 'CPF',
+      url: '/cpf',
+      icon: 'settings'
     }
   ];
 
@@ -42,6 +47,18 @@ export class AppComponent {
     public auth: AuthService
   ) {
     this.initializeApp();
+    this.user = localStorage.getItem('desk_user');
+    console.log('testando', this.user);
+  }
+
+  ngOnInit() {
+      // this.user = localStorage.getItem('desk_user');
+     this.auth.user().then(data => {
+       this.user = localStorage.setItem('desk_user', this.user);
+       // this.user = data;
+       console.log('okk', data);
+     });
+
   }
 
   initializeApp() {

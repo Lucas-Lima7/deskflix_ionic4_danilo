@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'my-settings', loadChildren: './my-settings/my-settings.module#MySettingsPageModule' },
-  { path: 'plans', loadChildren: './plans/plans.module#PlansPageModule' }
+  { path: 'plans', loadChildren: './plans/plans.module#PlansPageModule' },
+  { path: 'add-cpf', loadChildren: './add-cpf/add-cpf.module#AddCpfPageModule' }
 ];
 
 @NgModule({

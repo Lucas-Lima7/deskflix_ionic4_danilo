@@ -7,28 +7,33 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-content padding> teste
-    <!--
+  <ion-content padding>
     <ion-grid>
       <ion-row>
+        <!--<ion-col col-sm-6 *ngFor="let plan of plans | async">-->
         <ion-col col-sm-6 *ngFor="let plan of plans | async">
           <ion-card text-center>
             <ion-card-header>
-              <ion-item color="grey" text-center>
-                <ion-card-title color="light">Plano <br/> {{plan.name}}</ion-card-title>
+              <ion-item color="grey">
+                <ion-card-title color="light">Plano Mensal</ion-card-title>
               </ion-item>
             </ion-card-header>
             <ion-card-content>
-              <ion-item>{{plan.description}}</ion-item>
-              <ion-button ion-item>
-                <ion-icon name="card" item-left></ion-icon>
-                R$ {{plan.value}}
-              </ion-button>
-              <ion-button ion-item>
-                <ion-icon name="clock" item-left></ion-icon>
-                {{plan.duration == 1 ? 'Mensal' : 'Anual'}}
-              </ion-button>
-              <ion-button ion-button color="dark" block text-center navPush="PaymentPage" [navParams]="{plan: plan.id}">
+              <ion-item>{{plan.description}}Descrição: Este é um plano mensal</ion-item>
+              <ion-item>
+                <ion-button>
+                  <ion-icon name="card" slot="end"></ion-icon>
+                  R$ 37,90
+                </ion-button>
+              </ion-item>
+              <ion-item>
+                <ion-button>
+                <ion-icon name="clock" slot="end"></ion-icon>
+                Duração 1 mês
+                </ion-button>
+              </ion-item>
+              <!--<ion-button color="dark" block text-center navPush="PaymentPage" [navParams]="{plan: plan.id}">-->
+              <ion-button color="dark" expand="block" text-center>
                 Comprar
               </ion-button>
             </ion-card-content>
@@ -36,5 +41,4 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    -->
   </ion-content>
